@@ -7,7 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import FrontBarre from './components/frontbarre.js'
 import Presentation from './routes/presentation.js'
 import Accueil from './routes/accueil.js'
-
+import Galerie from './routes/galerie.js'
 class Index extends React.Component {
   constructor (props) {
     super(props)
@@ -21,6 +21,9 @@ class Index extends React.Component {
         <Switch>
           <Route exact path='/presentation' render={({history, match, location}) =>
             <Presentation history={history} match={match} location={location} />
+          } />
+          <Route exact path='/galeries' render={({history, match, location}) =>
+            <Galerie history={history} match={match} location={location} />
           } />
           <Route path='/' component={Accueil} />
         </Switch>
