@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { GenericWeather } from 'react-weather'
+import { OpenWeatherMap } from 'react-weather'
 
 class Accueil extends Component {
   constructor (props) {
@@ -32,7 +32,12 @@ class Accueil extends Component {
   render () {
     return (
       <div>
-          <GenericWeather city={this.state.city} temp={this.state.temp_c} status={this.state.condition} />
+        <div>
+          <OpenWeatherMap
+            city='Creches-sur-Saone'
+            appid='bb060a57debc6a5f35f94c390951a757'
+            />
+        </div>
       </div>
     )
   }
