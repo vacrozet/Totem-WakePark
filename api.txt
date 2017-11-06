@@ -1,0 +1,5 @@
+meteo: {
+    site: 'https://www.apixu.com/'
+    Key:"60a98d92084e415eb0e162324170611"
+    exemple:"http://api.apixu.com/v1/current.json?key=60a98d92084e415eb0e162324170611&q=46.237192,4.805336"
+}

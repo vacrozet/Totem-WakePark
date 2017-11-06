@@ -19,7 +19,7 @@ class FrontBarre extends Component {
     const {activeItem} = this.state
     return (
       <div>
-        <Menu>
+        <Menu stackable>
           <Menu.Item
             name='accueil'
             active={activeItem === 'accueil'}
