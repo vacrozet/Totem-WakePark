@@ -1,1 +1,2 @@
-node_modules
+#exclusion de mon dossier node module
+node_modules/
