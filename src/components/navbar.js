@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 import '../App.css'
+import { Link } from 'react-router-dom'
 
 class Frontbarre extends Component {
   render () {
@@ -9,14 +10,14 @@ class Frontbarre extends Component {
         <Navbar inverse collapseOnSelect className='navbar'>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href='#'>Totem Wake Park</a>
+              <Link to='/'>Totem Wake Park</Link>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
               <NavItem eventKey={1} href='#'>Accueil</NavItem>
-              <NavItem eventKey={2} href='#'>Galerie</NavItem>
+              <NavItem eventKey={2}><Link to='/galerie'>Galerie</Link></NavItem>
               <NavItem eventKey={3} href='#'>products</NavItem>
               <NavItem eventKey={4} href='#'>services</NavItem>
               <NavDropdown eventKey={5} title='Dropdown' id='basic-nav-dropdown'>

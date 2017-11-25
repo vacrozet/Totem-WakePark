@@ -6,6 +6,7 @@ import registerServiceWorker from './registerServiceWorker'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Home from './routes/home'
 import Galerie from './routes/galerie'
+import Upload from './routes/upload.js'
 
 class Index extends Component {
   render () {
@@ -13,6 +14,7 @@ class Index extends Component {
       <div>
         <Frontbarre id='navbar' history={this.props.history} match={this.props.match} location={this.props.location} />
         <Switch>
+          <Route exact path='/upload' component={Upload} />
           <Route exact path='/galerie' component={Galerie} />
           <Route exact path='/' component={Home} />
         </Switch>
