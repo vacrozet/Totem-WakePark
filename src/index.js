@@ -5,6 +5,7 @@ import Frontbarre from './components/navbar.js'
 import registerServiceWorker from './registerServiceWorker'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Home from './routes/home'
+import Galerie from './routes/galerie'
 
 class Index extends Component {
   render () {
@@ -12,6 +13,7 @@ class Index extends Component {
       <div>
         <Frontbarre id='navbar' history={this.props.history} match={this.props.match} location={this.props.location} />
         <Switch>
+          <Route exact path='/galerie' component={Galerie} />
           <Route exact path='/' component={Home} />
         </Switch>
       </div>

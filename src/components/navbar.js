@@ -15,8 +15,8 @@ class Frontbarre extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
-              <NavItem eventKey={1} href='#'>home</NavItem>
-              <NavItem eventKey={2} href='#'>about</NavItem>
+              <NavItem eventKey={1} href='#'>Accueil</NavItem>
+              <NavItem eventKey={2} href='#'>Galerie</NavItem>
               <NavItem eventKey={3} href='#'>products</NavItem>
               <NavItem eventKey={4} href='#'>services</NavItem>
               <NavDropdown eventKey={5} title='Dropdown' id='basic-nav-dropdown'>
