@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import React, { Component } from 'react'
 import Frontbarre from './components/navbar.js'
 import registerServiceWorker from './registerServiceWorker'
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom' //, Redirect
 import Home from './routes/home'
 import Galerie from './routes/galerie'
 import Upload from './routes/upload.js'
