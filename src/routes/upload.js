@@ -12,12 +12,14 @@ class Upload extends Component {
       createDir: '',
       showModal: false,
       dirName: '',
-      listDir: []
+      listDir: [],
+      album: ''
     }
     this.handleCreateDossier = this.handleCreateDossier.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleShowModal = this.handleShowModal.bind(this)
     this.handleChangeSelect = this.handleChangeSelect.bind(this)
+    this.handleShowAlbum = this.handleShowAlbum.bind(this)
   }
 
   componentWillMount () {
@@ -46,10 +48,11 @@ class Upload extends Component {
       var reader = new global.FileReader()
       reader.readAsDataURL(file)
       reader.onload = () => {
-        local().put('/picture/upload', {
+        local().put('/picture/putpicture', {
           pic: reader.result,
           name: file.name,
-          type: type
+          type: type,
+          dirName: this.state.dirName
         }).then((res) => {
           if (res.data.success === true) return console.log('success')
         }).catch((err) => {
@@ -95,11 +98,32 @@ class Upload extends Component {
     this.setState({[evt.target.name]: evt.target.value})
   }
 
-  handleChangeSelect () {
-    console.log('je passe ici')
-    this.setState({dirName: ''}, () => {
-      console.log(this.state.dirName)
+  handleShowAlbum () {
+    local().get('/picture/getalbum', {
+      params: {
+        dirName: this.state.dirName
+      }
+    }).then((res) => {
+      if (res.data.success === true) {
+        console.log(res.data.result[0].pictures)
+        this.setState({
+          album: res.data.result[0].pictures,
+          albumName: res.data.result[0]._id
+        })
+      }
+    }).catch((err) => {
+      console.log(err.response)
     })
+  }
+
+  handleChangeSelect (evt) {
+    if (evt.target.value === '') {
+      this.setState({
+        album: '',
+        albumName: ''
+      })
+    }
+    this.setState({dirName: evt.target.value})
   }
   handleformulaire () {
     return (
@@ -149,10 +173,14 @@ class Upload extends Component {
       <div id='selected'>
         <FormGroup controlId='formControlsSelect'>
           <h1>Selectionner Un Dossier</h1>
-          <FormControl className='option' componentClass='select' placeholder='select'>
+          <FormControl
+            className='option'
+            componentClass='select'
+            placeholder='select'
+            onChange={this.handleChangeSelect.bind(this)}>
             <option value=''>...</option>
             {this.state.listDir.map((tab, index) => {
-              return (<option key={index} value={tab} onClick={() => this.handleChangeSelect}>{tab}</option>)
+              return (<option key={index} value={tab}>{tab}</option>)
             })}
           </FormControl>
         </FormGroup>
@@ -162,15 +190,23 @@ class Upload extends Component {
   handleMultiButton () {
     return (
       <div id='multiButton'>
-        <Button className='button' bsStyle='primary' bsSize='large'>Show</Button>
-        <Dropzone
-          disablePreview
-          className='button'
-          accept='image/png, image/jpeg'
-          maxSize={10000000000}
-          onDrop={this.onDrop.bind(this)}>
-          <Button bsStyle='primary' bsSize='large'>Upload</Button>
-        </Dropzone>
+        {this.state.dirName ? (
+          <Button className='button' bsStyle='primary' bsSize='large' onClick={this.handleShowAlbum}>Show</Button>
+        ) : (
+          <Button className='button' bsStyle='primary' bsSize='large' onClick={this.handleShowAlbum} disabled>Show</Button>
+        )}
+        {this.state.dirName ? (
+          <Dropzone
+            disablePreview
+            className='button'
+            accept='image/png, image/jpeg'
+            maxSize={10000000000}
+            onDrop={this.onDrop.bind(this)}>
+            <Button bsStyle='primary' bsSize='large'>Upload</Button>
+          </Dropzone>
+        ) : (
+          <Button bsStyle='primary' bsSize='large' disabled>Upload</Button>
+        )}
       </div>
 
     )
@@ -182,6 +218,16 @@ class Upload extends Component {
         {this.handleModal()}
         {this.handleSelect()}
         {this.handleMultiButton()}
+        <div>
+          {this.state.album ? this.state.album.map((tab, index) => {
+            return (
+              <img key={index} src={`http://localhost:3005/picture/getpicture/carousel/${this.state.albumName}${tab.path}/${tab.type}`} alt='test' />
+            )
+          })
+          : (
+            null
+          )}
+        </div>
       </div>
     )
   }

@@ -3,7 +3,7 @@ var db = require('../../db.js')
 function error (res, code, bool, message) {
   res.status(code)
   res.json({
-    success: false,
+    success: bool,
     message: message
   })
 }
@@ -18,7 +18,7 @@ module.exports = (req, res) => {
       let tab = {
         _id: name,
         time: Math.round(Date.now() / 100),
-        pictures: {}
+        pictures: []
       }
       db.collection('Picture').insert(tab, null, (error, results) => {
         if (error) return error(res, 500, false, 'Internal server error')

@@ -32,6 +32,7 @@ body {
   /* text-align: center; */
 }
 
+
 #multiButton {
   width: 100vw;
   text-align: center;
@@ -45,10 +46,4 @@ body {
   text-align: center;
   display: inline-block;
   justify-content: space-between;    
-}
-
-.dropzone {
-  width: 100vw;
-  height: 100px;
-  background-color: red;
 }
