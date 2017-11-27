@@ -13,13 +13,20 @@ class Upload extends Component {
       showModal: false,
       dirName: '',
       listDir: [],
-      album: ''
+      album: '',
+      isLoading: false,
+      showModalComment: false,
+      idPic: '',
+      commentPic: '',
+      writeComment: ''
     }
     this.handleCreateDossier = this.handleCreateDossier.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleShowModal = this.handleShowModal.bind(this)
     this.handleChangeSelect = this.handleChangeSelect.bind(this)
     this.handleShowAlbum = this.handleShowAlbum.bind(this)
+    this.handleShowComment = this.handleShowComment.bind(this)
+    this.handleModalComment = this.handleModalComment.bind(this)
   }
 
   componentWillMount () {
@@ -54,7 +61,9 @@ class Upload extends Component {
           type: type,
           dirName: this.state.dirName
         }).then((res) => {
-          if (res.data.success === true) return console.log('success')
+          if (res.data.success === true) {
+            this.setState({isLoading: false})
+          }
         }).catch((err) => {
           if (err.response) {
             console.log(err.response.data.error)
@@ -99,6 +108,9 @@ class Upload extends Component {
   }
 
   handleShowAlbum () {
+    this.setState({
+      isLoading: true
+    })
     local().get('/picture/getalbum', {
       params: {
         dirName: this.state.dirName
@@ -107,6 +119,7 @@ class Upload extends Component {
       if (res.data.success === true) {
         console.log(res.data.result[0].pictures)
         this.setState({
+          isLoading: false,
           album: res.data.result[0].pictures,
           albumName: res.data.result[0]._id
         })
@@ -140,14 +153,26 @@ class Upload extends Component {
             onKeyPress={this.handleShowModal}
           />
           {' '}
-          <Button
-            className='buttonform'
-            bsStyle='primary'
-            name='submit'
-            onClick={() => this.setState({showModal: true})}
-          >
-            Créer
+          {this.state.createDir !== '' ? (
+            <Button
+              className='buttonform'
+              bsStyle='primary'
+              name='submit'
+              onClick={() => this.setState({ showModal: true })}
+            >
+              Créer
           </Button>
+          ) : (
+            <Button
+              className='buttonform'
+              bsStyle='primary'
+              name='submit'
+              disabled
+              onClick={() => this.setState({ showModal: true })}
+            >
+              Créer
+          </Button>
+          )}
         </FormGroup>
       </div>
     )
@@ -191,7 +216,7 @@ class Upload extends Component {
     return (
       <div id='multiButton'>
         {this.state.dirName ? (
-          <Button className='button' bsStyle='primary' bsSize='large' onClick={this.handleShowAlbum}>Show</Button>
+          <Button className='button' bsStyle='primary' bsSize='large' disabled={this.state.isLoading} onClick={!this.state.isLoading ? this.handleShowAlbum : null}>{this.state.isLoading ? 'Loading...' : 'Show'}</Button>
         ) : (
           <Button className='button' bsStyle='primary' bsSize='large' onClick={this.handleShowAlbum} disabled>Show</Button>
         )}
@@ -211,6 +236,35 @@ class Upload extends Component {
 
     )
   }
+  handleShowModalComment () {
+
+  }
+  handleShowComment () {
+    if (this.state.writeComment !== '') {
+      
+      local().patch('/picture/addcomment', {
+        idPic: this.state.idPic,
+        commentPic: this.state.writeComment,
+        dir: this.state.dirName
+      }).then((res) => {
+        this.setState({
+          idPic: '',
+          writeComment: '',
+          commentPic: '',
+          showModalComment: false
+        })
+      }).catch((err) => {
+        console.log(err.response)
+      })
+    }
+  }
+  handleModalComment (evt) {
+    this.setState({
+      commentPic: evt.target.comment,
+      idPic: evt.target.name,
+      showModalComment: true
+    })
+  }
   render () {
     return (
       <div>
@@ -218,12 +272,22 @@ class Upload extends Component {
         {this.handleModal()}
         {this.handleSelect()}
         {this.handleMultiButton()}
-        <div id='grid'>
+        <Modal show={this.state.showModalComment} onHide={() => this.setState({showModalComment: false})}>
+          <Modal.Header closeButton>
+            <Modal.Title>Commentaire</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <input name='writeComment' value={this.state.writeComment} placeholder={this.state.commentPic} onChange={this.handleChange} />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() => this.setState({showModalComment: false})}>Non</Button>
+            <Button bsStyle='primary' onClick={this.handleShowComment}>Oui</Button>
+          </Modal.Footer>
+        </Modal>
+        <div>
           {this.state.album ? this.state.album.map((tab, index) => {
             return (
-              <div className='elementOfGrid'>
-                <img key={index} src={`http://localhost:3005/picture/getpicture/carousel/${this.state.albumName}${tab.path}/${tab.type}`} alt='test' />
-              </div>
+              <img className='elementOfGrid' name={tab._id} comment={tab.comment} onClick={this.handleModalComment} key={index} src={`http://localhost:3005/picture/getpicture/carousel/${this.state.albumName}${tab.path}/${tab.type}`} alt='test' />
             )
           })
           : (

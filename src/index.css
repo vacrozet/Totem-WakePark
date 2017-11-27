@@ -55,7 +55,10 @@ body {
   grid-auto-flow: column;
 }
 
-#grid .elementOfGrid {
+.elementOfGrid {
   height: 200px;
   width: 300px;
+}
+.elementOfGrid:hover {
+  opacity: 0.6;
 }

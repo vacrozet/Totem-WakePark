@@ -7,5 +7,6 @@ router.put('/putdir', require('../controleur/picture/putdir.js'))
 router.get('/getdir', require('../controleur/picture/getdir.js'))
 router.get('/getalbum', require('../controleur/picture/getalbum.js'))
 router.get('/getpicture/:dir/:folder/:name/:type', require('../controleur/picture/getpicture.js'))
+router.patch('/addcomment', require('../controleur/picture/addcomment.js'))
 
 module.exports = router
