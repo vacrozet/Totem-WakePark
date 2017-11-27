@@ -23,7 +23,7 @@ module.exports = (req, res) => {
   } else {
     base64Data = req.body.pic.replace(/^data:image\/jpeg;base64,/, '')
   }
-  if (!checkBase.isBase64(base64Data)) return error(res, 'Invalid photo', 403)
+  // if (!checkBase.isBase64(base64Data)) return error(res, 'Invalid photo', 403)
   fs.writeFile(picsCarousel + req.body.dirName + '/' + req.body.name, base64Data, 'base64', (err) => {
     if (err) console.log(err)
   })

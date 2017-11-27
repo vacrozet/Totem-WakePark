@@ -47,3 +47,15 @@ body {
   display: inline-block;
   justify-content: space-between;    
 }
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 100px 100px 100px;
+  grid-auto-flow: column;
+}
+
+#grid .elementOfGrid {
+  height: 200px;
+  width: 300px;
+}

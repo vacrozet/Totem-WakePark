@@ -117,7 +117,7 @@ class Upload extends Component {
   }
 
   handleChangeSelect (evt) {
-    if (evt.target.value === '') {
+    if (evt.target.value === '' || evt.target.value !== this.state.dirName) {
       this.setState({
         album: '',
         albumName: ''
@@ -218,10 +218,12 @@ class Upload extends Component {
         {this.handleModal()}
         {this.handleSelect()}
         {this.handleMultiButton()}
-        <div>
+        <div id='grid'>
           {this.state.album ? this.state.album.map((tab, index) => {
             return (
-              <img key={index} src={`http://localhost:3005/picture/getpicture/carousel/${this.state.albumName}${tab.path}/${tab.type}`} alt='test' />
+              <div className='elementOfGrid'>
+                <img key={index} src={`http://localhost:3005/picture/getpicture/carousel/${this.state.albumName}${tab.path}/${tab.type}`} alt='test' />
+              </div>
             )
           })
           : (
