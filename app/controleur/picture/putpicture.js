@@ -1,3 +1,4 @@
+
 const fs = require('fs')
 const db = require('../../db.js')
 const uuid = require('uuid')
@@ -5,15 +6,18 @@ const uuid = require('uuid')
 const picsDir = require('path').dirname(require.main.filename) + '/pictures/'
 const picsCarousel = require('path').dirname(require.main.filename) + '/pictures/' + 'carousel/'
 
-// function error (res, message, code) {
-//   res.status(code)
-//   res.json({
-//     success: false,
-//     message: message
-//   })
-// }
+function error (res, message, code) {
+  res.status(code)
+  res.json({
+    success: false,
+    message: message
+  })
+}
 
 module.exports = (req, res) => {
+  if (req.body.dirName === undefined || req.body.pic === undefined || req.body.type === undefined) {
+    return error(res, 'Query Not Found', 403)
+  }
   let id = uuid()
   if (!fs.existsSync(picsDir)) fs.mkdirSync(picsDir)
   if (!fs.existsSync(picsCarousel)) fs.mkdirSync(picsCarousel)
@@ -29,7 +33,7 @@ module.exports = (req, res) => {
     if (err) console.log(err)
   })
   let object = {}
-  object._id = id
+  object.id = id
   object.type = req.body.type
   object.dir = req.body.dirName
   object.path = '/' + id + req.body.type

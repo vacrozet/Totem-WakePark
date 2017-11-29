@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
-import { Button, FormGroup, FormControl, Modal } from 'react-bootstrap'
+import { Button, FormGroup, FormControl, Modal, ControlLabel } from 'react-bootstrap'
 import { local } from '../utils/api.js'
-import '../index.css'
+import '../css/upload.css'
 
 class Upload extends Component {
   constructor (props) {
@@ -18,7 +18,9 @@ class Upload extends Component {
       showModalComment: false,
       idPic: '',
       commentPic: '',
-      writeComment: ''
+      writeComment: '',
+      picType: '',
+      showModalDirectory: false
     }
     this.handleCreateDossier = this.handleCreateDossier.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -27,13 +29,15 @@ class Upload extends Component {
     this.handleShowAlbum = this.handleShowAlbum.bind(this)
     this.handleShowComment = this.handleShowComment.bind(this)
     this.handleModalComment = this.handleModalComment.bind(this)
+    this.handleDeletePict = this.handleDeletePict.bind(this)
+    this.handleShowModalDirectory = this.handleShowModalDirectory.bind(this)
   }
 
   componentWillMount () {
     // if (global.localStorage.getItem('token') !== '123456789') {
     //   this.props.history.push('/')
     // }
-    local().get('/picture/getDir').then((res) => {
+    local().get('/picture/directory').then((res) => {
       if (res.data.success === true) {
         this.setState({
           listDir: res.data.result
@@ -55,7 +59,7 @@ class Upload extends Component {
       var reader = new global.FileReader()
       reader.readAsDataURL(file)
       reader.onload = () => {
-        local().put('/picture/putpicture', {
+        local().put('/picture/picture', {
           pic: reader.result,
           name: file.name,
           type: type,
@@ -80,7 +84,7 @@ class Upload extends Component {
   }
 
   handleCreateDossier () {
-    local().put('/picture/putdir', {
+    local().put('/picture/directory', {
       name: this.state.createDir
     }).then((res) => {
       if (res.data.success === true) {
@@ -103,6 +107,30 @@ class Upload extends Component {
     }
   }
 
+  handleShowModalDirectory () {
+    console.log(this.state.dirName)
+    if (this.state.dirName !== '') {
+      console.log('je passe')
+      this.setState({ showModalDirectory: true })
+    }
+  }
+
+  handleModalDirectory () {
+    return (
+      <Modal show={this.state.showModalDirectory} onHide={() => this.setState({ showModalDirectory: false })}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Directory ?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h5>Êtes-vous sur de vouloir supprimer le repertoire "{this.state.dirName}" ?</h5>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => this.setState({ showModal: false })}>Non</Button>
+          <Button bsStyle='danger' onClick={this.handleCreateDossier}>Oui</Button>
+        </Modal.Footer>
+      </Modal>
+    )
+  }
   handleChange (evt) {
     this.setState({[evt.target.name]: evt.target.value})
   }
@@ -113,15 +141,19 @@ class Upload extends Component {
     })
     local().get('/picture/getalbum', {
       params: {
-        dirName: this.state.dirName
+        dir: this.state.dirName
       }
     }).then((res) => {
       if (res.data.success === true) {
-        console.log(res.data.result[0].pictures)
         this.setState({
           isLoading: false,
           album: res.data.result[0].pictures,
           albumName: res.data.result[0]._id
+        })
+      }
+      if (res.data.success === false) {
+        this.setState({
+          isLoading: false
         })
       }
     }).catch((err) => {
@@ -179,7 +211,7 @@ class Upload extends Component {
   }
   handleModal () {
     return (
-      <Modal show={this.state.showModal} onHide={this.close}>
+      <Modal show={this.state.showModal} onHide={() => this.setState({ showModal: false })}>
         <Modal.Header closeButton>
           <Modal.Title>Êtes-vous sur du nom ?</Modal.Title>
         </Modal.Header>
@@ -216,6 +248,11 @@ class Upload extends Component {
     return (
       <div id='multiButton'>
         {this.state.dirName ? (
+          <Button className='button' bsStyle='danger' bsSize='large' onClick={this.handleShowModalDirectory}>Delete</Button>
+        ) : (
+          <Button className='button' bsStyle='danger' bsSize='large' onClick={this.handleShowAlbum} disabled>Delete</Button>
+        )}
+        {this.state.dirName ? (
           <Button className='button' bsStyle='primary' bsSize='large' disabled={this.state.isLoading} onClick={!this.state.isLoading ? this.handleShowAlbum : null}>{this.state.isLoading ? 'Loading...' : 'Show'}</Button>
         ) : (
           <Button className='button' bsStyle='primary' bsSize='large' onClick={this.handleShowAlbum} disabled>Show</Button>
@@ -236,23 +273,37 @@ class Upload extends Component {
 
     )
   }
-  handleShowModalComment () {
-
-  }
   handleShowComment () {
     if (this.state.writeComment !== '') {
-      
       local().patch('/picture/addcomment', {
         idPic: this.state.idPic,
         commentPic: this.state.writeComment,
         dir: this.state.dirName
       }).then((res) => {
-        this.setState({
-          idPic: '',
-          writeComment: '',
-          commentPic: '',
-          showModalComment: false
-        })
+        if (res.data.success === true) {
+          this.setState({
+            idPic: '',
+            writeComment: '',
+            commentPic: '',
+            showModalComment: false,
+            isLoading: true
+          })
+          local().get('/picture/getalbum', {
+            params: {
+              dir: this.state.dirName
+            }
+          }).then((res) => {
+            if (res.data.success === true) {
+              this.setState({
+                isLoading: false,
+                album: res.data.result[0].pictures,
+                albumName: res.data.result[0]._id
+              })
+            }
+          }).catch((err) => {
+            console.log(err.response)
+          })
+        }
       }).catch((err) => {
         console.log(err.response)
       })
@@ -260,34 +311,74 @@ class Upload extends Component {
   }
   handleModalComment (evt) {
     this.setState({
-      commentPic: evt.target.comment,
+      commentPic: evt.target.title,
       idPic: evt.target.name,
-      showModalComment: true
+      showModalComment: true,
+      picType: evt.target.alt
     })
+  }
+  handleDeletePict () {
+    if (this.state.idPic !== '') {
+      local().delete('/picture/picture', {
+        params: {
+          idPic: this.state.idPic,
+          dir: this.state.dirName,
+          picType: this.state.picType
+        }
+      }).then((res) => {
+        if (res.data.success === true) {
+          this.setState({
+            showModalComment: false
+          })
+          local().get('/picture/getalbum', {
+            params: {
+              dir: this.state.dirName
+            }
+          }).then((res) => {
+            if (res.data.success === true) {
+              this.setState({
+                isLoading: false,
+                album: res.data.result[0].pictures,
+                albumName: res.data.result[0]._id
+              })
+            }
+          }).catch((err) => {
+            console.log(err.response)
+          })
+        }
+      }).catch((err) => {
+        console.log(err.response)
+      })
+    }
   }
   render () {
     return (
       <div>
         {this.handleformulaire()}
         {this.handleModal()}
+        {this.handleModalDirectory()}
         {this.handleSelect()}
         {this.handleMultiButton()}
-        <Modal show={this.state.showModalComment} onHide={() => this.setState({showModalComment: false})}>
+        <Modal show={this.state.showModalComment} onHide={() => this.setState({ showModalComment: false })}>
           <Modal.Header closeButton>
             <Modal.Title>Commentaire</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <input name='writeComment' value={this.state.writeComment} placeholder={this.state.commentPic} onChange={this.handleChange} />
+            <ControlLabel>Commentaire Actuel: {this.state.commentPic}</ControlLabel>
+            <FormGroup>
+              <FormControl name='writeComment' type='text' placeholder='' value={this.state.writeComment} onChange={this.handleChange} />
+            </FormGroup>
+            <Button bsStyle='danger' onClick={this.handleDeletePict}>Supprimer</Button>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => this.setState({showModalComment: false})}>Non</Button>
+            <Button onClick={() => this.setState({ showModalComment: false })}>Non</Button>
             <Button bsStyle='primary' onClick={this.handleShowComment}>Oui</Button>
           </Modal.Footer>
         </Modal>
-        <div>
+        <div id='grid'>
           {this.state.album ? this.state.album.map((tab, index) => {
             return (
-              <img className='elementOfGrid' name={tab._id} comment={tab.comment} onClick={this.handleModalComment} key={index} src={`http://localhost:3005/picture/getpicture/carousel/${this.state.albumName}${tab.path}/${tab.type}`} alt='test' />
+              <img className='elementOfGrid' name={tab.id} alt={tab.type} title={tab.comment} onClick={this.handleModalComment} key={index} src={`http://localhost:3005/picture/getpicture/carousel/${this.state.albumName}${tab.path}/${tab.type}`} />
             )
           })
           : (

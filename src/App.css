@@ -30,4 +30,9 @@
 #frontbarre > .navbar {
   border-radius: 0px;
   text-align: center;
+  margin-bottom: 0px;
+  /* position: fixed;
+  top: 0;
+  width: 100%;
+  display: block; */
 }
