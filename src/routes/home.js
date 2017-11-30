@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import CCarousel from '../components/carousel.js'
 
 class Home extends Component {
   render () {
     return (
       <div>
-        coucou
+        <CCarousel />
       </div>
     )
   }
