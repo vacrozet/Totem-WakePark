@@ -1,0 +1,11 @@
+#PictCarousel {
+    width: 900px;
+    height: 500px;
+    margin: auto;
+}
+
+#PictCarousel #Pict {
+    display: inline-block;
+    text-align: center;
+    justify-content: center;
+}

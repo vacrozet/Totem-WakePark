@@ -17,7 +17,7 @@ module.exports = (req, res) => {
   db.get().then((db) => {
     db.collection('Picture').findOne({_id: req.query.dir}).then((result) => {
       result.pictures = result.pictures.filter(tab => tab.id !== req.query.idPic)
-      db.collection('Picture').update({_id: req.query.dir}, {'pictures': result.pictures}).then((res1) => {
+      db.collection('Picture').update({_id: req.query.dir}, {$set: {'pictures': result.pictures}}).then((res1) => {
       }).catch(err => console.log(err))
     }).catch(err => console.log(err))
   })
