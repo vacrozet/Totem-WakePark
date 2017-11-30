@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom' //, Redirect
 import Home from './routes/home'
 import Galerie from './routes/galerie'
 import Upload from './routes/upload.js'
+import Tarifs from './routes/tarifs.js'
 
 class Index extends Component {
   render () {
@@ -16,6 +17,7 @@ class Index extends Component {
         <Switch>
           <Route exact path='/upload' component={Upload} />
           <Route exact path='/galerie' component={Galerie} />
+          <Route exact path='/tarifs' component={Tarifs} />
           <Route exact path='/' component={Home} />
         </Switch>
       </div>
