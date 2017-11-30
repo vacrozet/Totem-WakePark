@@ -1,6 +1,7 @@
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { Carousel } from 'react-responsive-carousel'
 import React, { Component } from 'react'
-import { Carousel } from 'react-bootstrap'
-import { local } from '../utils/api.js'
+import '../css/carousel.css'
 
 class CCarousel extends Component {
   constructor (props) {
@@ -10,122 +11,41 @@ class CCarousel extends Component {
     }
   }
   componentWillMount () {
-    local().get('/picture/carousel').then((res) => {
-      if (res.data.success === true) {
-        this.setState({
-          result: res.data.result
-        })
-      }
-    }).catch((err) => {
-      console.log(err.response)
-    })
   }
 
-  // {this.state.result.map((res, index) => {
-  //   return (
-  //     <Carousel.Item>
-  //       <img key={index} width={900} height={500} alt='900x500' src={`http://localhost:3005/pictures/${res.name}`} />
-  //       <Carousel.Caption>
-  //         <h3>{res.title}</h3>
-  //         <p>{res.overview}</p>
-  //       </Carousel.Caption>
-  //     </Carousel.Item>
-  //   )
-  // })}
   render () {
     return (
       <div>
-        <Carousel>
-          <Carousel.Item>
-            <img width={900} height={500} alt='900x500' src='../image/team_totem.jpg' />
-            <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt='900x500' src='../image/team_totem.jpg' />
-            <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt='900x500' src='../image/team_totem.jpg' />
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt='900x500' src='../image/team_totem.jpg' />
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt='900x500' src='../image/team_totem.jpg' />
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt='900x500' src='../image/team_totem.jpg' />
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
-        
-        
-        
-        <Carousel>
-          <Carousel.Item>
-            <img width={900} height={500} alt='900x500' src='../image/team_totem.jpg' />
-            <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt='900x500' src='../image/team_totem.jpg' />
-            <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt='900x500' src='../image/team_totem.jpg' />
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt='900x500' src='../image/team_totem.jpg' />
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt='900x500' src='../image/team_totem.jpg' />
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt='900x500' src='../image/team_totem.jpg' />
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
+        {this.props.name ? (
+          <div>
+            <center>
+              <p className='textTitleCarousel'>{this.props.name}</p>
+            </center>
+          </div>
+        ) : (
+          null
+        )}
+        {this.props.arrayPic ? (
+          <Carousel
+            autoPlay
+            infiniteLoop
+            showThumbs={false}
+            swipeScrollTolerance={50}>
+            {this.props.arrayPic ? (this.props.arrayPic.map((pic, index) => {
+              return (
+                <div key={index} className='divPict' >
+                  <img className='Pict' alt='' src={`http://localhost:3005/picture/getpicture/carousel/${pic.dir}${pic.path}/${pic.type}`} />
+                  <p className='legend legende' >{pic.comment}</p>
+                </div>
+              )
+            })
+            ) : (
+              null
+            )}
+          </Carousel>
+        ) : (
+          null
+        )}
       </div>
     )
   }

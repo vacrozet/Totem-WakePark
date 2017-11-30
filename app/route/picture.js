@@ -11,5 +11,6 @@ router.patch('/comment', require('../controleur/picture/addComment.js'))
 router.delete('/comment', require('../controleur/picture/deleteComment.js'))
 router.get('/album', require('../controleur/picture/getalbum.js'))
 router.get('/getpicture/:dir/:folder/:name/:type', require('../controleur/picture/getpicture.js'))
+router.get('/all', require('../controleur/picture/all.js'))
 
 module.exports = router

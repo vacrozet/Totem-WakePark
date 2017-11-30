@@ -17,7 +17,7 @@ module.exports = (req, res) => {
       res.pictures.forEach(elmt => {
         if (req.body.idPic === elmt.id) elmt.comment = req.body.commentPic
       })
-      db.collection('Picture').update({ _id: req.body.dir }, {'pictures': res.pictures}).then(result => {
+      db.collection('Picture').update({ _id: req.body.dir }, {$set: {'pictures': res.pictures}}).then(result => {
       }).catch(err => console.log(err))
     }).catch(err => console.log(err))
   })
