@@ -1,7 +1,7 @@
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { Carousel } from 'react-responsive-carousel'
 import React, { Component } from 'react'
-import { Carousel } from 'react-bootstrap'
 import '../css/carousel.css'
-// import { local } from '../utils/api.js'
 
 class CCarousel extends Component {
   constructor (props) {
@@ -18,22 +18,25 @@ class CCarousel extends Component {
       <div>
         {this.props.name ? (
           <div>
-            <h1>{this.props.name}</h1>
+            <center>
+              <p className='textTitleCarousel'>{this.props.name}</p>
+            </center>
           </div>
         ) : (
           null
         )}
         {this.props.arrayPic ? (
-          <Carousel>
+          <Carousel
+            autoPlay
+            infiniteLoop
+            showThumbs={false}
+            swipeScrollTolerance={50}>
             {this.props.arrayPic ? (this.props.arrayPic.map((pic, index) => {
               return (
-                <Carousel.Item key={index} id='PictCarousel'>
-                  <img id='Pict' width={900} height={500} alt='900x500' src={`http://localhost:3005/picture/getpicture/carousel/${pic.dir}${pic.path}/${pic.type}`} />
-                  <Carousel.Caption>
-                    {/* <h3>{this.props.name}</h3> */}
-                    <p>{pic.comment}</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
+                <div key={index} className='divPict' >
+                  <img className='Pict' alt='' src={`http://localhost:3005/picture/getpicture/carousel/${pic.dir}${pic.path}/${pic.type}`} />
+                  <p className='legend legende' >{pic.comment}</p>
+                </div>
               )
             })
             ) : (

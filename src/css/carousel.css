@@ -1,11 +1,63 @@
-#PictCarousel {
-    width: 900px;
-    height: 500px;
-    margin: auto;
+.carousel {
+    width: auto;
+}
+.divPict {
+    height: 600px;
+}
+.Pict {
+    height: 600px;
+}
+.legende {
+    z-index: 10;
+    height: 30px;
+    font-size: 50px;
+}
+.textTitleCarousel {
+    font-size: 50px;
 }
 
-#PictCarousel #Pict {
-    display: inline-block;
-    text-align: center;
-    justify-content: center;
+@media screen and (min-width: 415px) and (max-width: 770px) {
+    .divPict {
+        height: 410px;
+    }
+    .Pict {
+        height: 410px;
+    }
+    .textTitleCarousel {
+        font-size: 40px;
+    }
 }
+@media screen and (min-width: 380px) and (max-width: 414px) {
+    .divPict {
+        height: 200px;
+    }
+    .Pict {
+        height: 200px;
+    }
+    .textTitleCarousel {
+        font-size: 30px;
+    }
+}
+@media screen and (min-width: 320px) and (max-width: 380px) {
+    .divPict {
+        height: 175px;
+    }
+    .Pict {
+        height: 175px;
+    }
+    .textTitleCarousel {
+        font-size: 25px;
+    }
+}
+@media screen and (max-width: 319px) {
+    .divPict {
+        height: 150px;
+    }
+    .Pict {
+        height: 150px;
+    }
+    .textTitleCarousel {
+        font-size: 20px;
+    }
+}
+
