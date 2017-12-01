@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
 import { Button, FormGroup, FormControl, Modal, ControlLabel } from 'react-bootstrap'
-import { local } from '../utils/api.js'
-import '../css/upload.css'
+import { local } from '../../utils/api.js'
+import '../../css/upload.css'
 
 class Upload extends Component {
   constructor (props) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import CCarousel from '../components/carousel.js'
-import { local } from '../utils/api'
+import CCarousel from '../../components/carousel.js'
+import { local } from '../../utils/api'
 
 class Galerie extends Component {
   constructor (props) {

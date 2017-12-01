@@ -27,9 +27,9 @@ class Frontbarre extends Component {
           <Navbar.Collapse>
             <Nav pullRight>
               <NavItem eventKey={1} onClick={() => this.handleChangePage('')}>Accueil</NavItem>
-              <NavItem eventKey={2} onClick={() => this.handleChangePage('galerie')}>Galerie</NavItem>
-              <NavItem eventKey={3} onClick={() => this.handleChangePage('tarifs')}>Tarifs</NavItem>
-              <NavItem eventKey={4} onClick={() => this.handleChangePage('galerie')}>services</NavItem>
+              <NavItem eventKey={2} onClick={() => this.handleChangePage('/galerie')}>Galerie</NavItem>
+              <NavItem eventKey={3} onClick={() => this.handleChangePage('/tarifs')}>Tarifs</NavItem>
+              <NavItem eventKey={4} onClick={() => this.handleChangePage('/galerie')}>services</NavItem>
               <NavDropdown eventKey={5} title='Dropdown' id='basic-nav-dropdown'>
                 <MenuItem eventKey={5.1}>Action</MenuItem>
                 <MenuItem eventKey={5.2}>Another action</MenuItem>
