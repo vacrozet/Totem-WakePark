@@ -2,13 +2,24 @@ import React, { Component } from 'react'
 import { Button, FormGroup, FormControl, Modal } from 'react-bootstrap'
 import { local } from '../../utils/api.js'
 
+class DocumentInput extends React.Component {
+  render () {
+    return <input
+      type='file'
+      name={`document-${this.props.index}-document`} 
+    />
+  }
+}
+
 class ChangeTarifs extends Component {
   constructor (props) {
     super(props)
     this.state = {
       showModalCreaGamm: false,
-      creaGamm: ''
+      creaGamm: '',
+      documents: []
     }
+    this.add = this.add.bind(this)
   }
 
   componentWillMount () {
@@ -81,14 +92,30 @@ class ChangeTarifs extends Component {
   handleSelectGamm () {
   }
 
+  add () {
+    const documents = this.state.documents.concat(DocumentInput)
+    this.setState({ documents })
+  }
   render () {
+    const documents = this.state.documents.map((Element, index) => {
+      return (
+        <div>
+          <input key={index} index={index} />
+          <input key={index} index={index} />
+          <input key={index} index={index} />
+        </div>
+      )
+    })
     return (
       <div>
         {this.handleFormCreaGamm()}
         {this.handleShowModalCreaGamm()}
+        <button onClick={this.add}>Add</button>
+        <div className='inputs'>
+          { documents }
+        </div>
       </div>
     )
   }
 }
-
 export default ChangeTarifs
