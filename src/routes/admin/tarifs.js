@@ -1,119 +1,103 @@
 import React, { Component } from 'react'
-import { Button, FormGroup, FormControl, Modal } from 'react-bootstrap'
-import { local } from '../../utils/api.js'
-
-class DocumentInput extends React.Component {
-  render () {
-    return <input
-      type='file'
-      name={`document-${this.props.index}-document`} 
-    />
-  }
-}
+import { Panel, Accordion } from 'react-bootstrap'
+import '../../css/tarifs.css'
 
 class ChangeTarifs extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      showModalCreaGamm: false,
-      creaGamm: '',
-      documents: []
+      activeKey: '1'
     }
-    this.add = this.add.bind(this)
   }
 
-  componentWillMount () {
-    local().get('/tarifs/gamme').then((res) => {
-      console.log(res)
-    }).catch((err) => { console.log(err.response) })
-  }
   handleChange (evt) {
     this.setState({[evt.target.name]: evt.target.value})
   }
-  handleFormCreaGamm () {
-    return (
-      <div id='formulaire'>
-        <h1>Créer une nouvelle gamme de tarifs</h1>
-        <FormGroup bsSize='small'>
-          <FormControl
-            className='inputform'
-            name='creaGamm'
-            type='text'
-            placeholder='Nouvelle Gamme'
-            value={this.state.creaGamm}
-            onChange={this.handleChange.bind(this)}
-          />
-          {' '}
-          {this.state.creaGamm.trim() !== '' ? (
-            <Button
-              className='buttonform'
-              bsStyle='primary'
-              name='submit'
-              onClick={() => this.setState({ showModalCreaGamm: true })}
-            >
-              Créer
-          </Button>
-          ) : (
-            <Button
-              className='buttonform'
-              bsStyle='primary'
-              name='submit'
-              disabled
-            >
-              Créer
-          </Button>
-          )}
-        </FormGroup>
-      </div>
-    )
-  }
-  handleShowModalCreaGamm () {
-    return (
-      <Modal show={this.state.showModalCreaGamm} onHide={() => this.setState({ showModalCreaGamm: false })}>
-        <Modal.Header closeButton>
-          <Modal.Title>Êtes-vous sur du nom ?</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h1>{this.state.creaGamm}</h1>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => this.setState({showModalCreaGamm: false})}>Non</Button>
-          <Button bsStyle='primary' onClick={this.handleCreateGamm.bind(this)}>Oui</Button>
-        </Modal.Footer>
-      </Modal>
-    )
-  }
-  handleCreateGamm () {
-    if (this.state.creaGamm.trim() !== '') {
-      local().put('/tarifs/gamme')
-    }
+  handleSelect () {
+    console.log('je passe ici')
+    this.setState({ activKey: '3' })
   }
 
-  handleSelectGamm () {
-  }
-
-  add () {
-    const documents = this.state.documents.concat(DocumentInput)
-    this.setState({ documents })
-  }
   render () {
-    const documents = this.state.documents.map((Element, index) => {
-      return (
-        <div>
-          <input key={index} index={index} />
-          <input key={index} index={index} />
-          <input key={index} index={index} />
-        </div>
-      )
-    })
     return (
       <div>
-        {this.handleFormCreaGamm()}
-        {this.handleShowModalCreaGamm()}
-        <button onClick={this.add}>Add</button>
-        <div className='inputs'>
-          { documents }
-        </div>
+        <Accordion defaultActiveKey={this.state.activeKey}>
+          <Panel bsStyle='primary' header='Forfaits Libres' eventKey='1'>
+            <center>
+              <table>
+                <tbody>
+                  <tr>
+                    <th>Forfait</th>
+                    <th>Adulue</th>
+                    <th>Enfant (-16ans)</th>
+                  </tr>
+                  <tr>
+                    <th>1 Heure</th>
+                    <td>20 Euros</td>
+                    <td>18 Euros</td>
+                  </tr>
+                  <tr>
+                    <th>2 Heures</th>
+                    <td>34 Euros</td>
+                    <td>30 Euros</td>
+                  </tr>
+                  <tr>
+                    <th>4 Heures</th>
+                    <td>45 Euros</td>
+                    <td>40 Euros</td>
+                  </tr>
+                  <tr>
+                    <th>Journée</th>
+                    <td>58 Euros</td>
+                    <td>52 Euros</td>
+                  </tr>
+                  <tr>
+                    <th>Week-end</th>
+                    <td>86 Euros</td>
+                    <td>78 Euros</td>
+                  </tr>
+                  <tr>
+                    <th>Semaine</th>
+                    <td>168 Euros</td>
+                    <td>148 Euros</td>
+                  </tr>
+                </tbody>
+              </table>
+              <article>
+                *** Les modules (obstacles) sont exclusivement réservés à la pratique sportive.<br />
+                Pour cela, vous devez avoir été autorisé par notre personnel et être muni d’un matériel approprié (casque, gilet, planche).<br />
+                Une licence FFNSW ou WWA est vivement conseillée.<br />
+                Matériel inclus : gilet de sécurité, bi-skis, kneeboard, mono, disque – Matériel en option : voir <p onClick={this.handleSelect.bind(this)}>“location de matériel”</p>
+              </article>
+            </center>
+          </Panel>
+          <Panel bsStyle='primary' header='Les Carnets' eventKey='2'>
+            <center>
+              <table>
+                <tbody>
+                  <tr>
+                    <th>FORFAIT</th>
+                    <th>ADULTE</th>
+                    <th>ENFANT (-16ans)</th>
+                  </tr>
+                  <tr>
+                    <th>10H Non Consécutives</th>
+                    <td>180 Euros</td>
+                    <td>165 Euros</td>
+                  </tr>
+                  <tr>
+                    <th>20H Non Consécutives</th>
+                    <td>320 Euros</td>
+                    <td>280 Euros</td>
+                  </tr>
+                </tbody>
+              </table>
+            </center>
+          </Panel>
+          <Panel bsStyle='primary' header='Collapsible Group Item #3' eventKey='3'>
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </Panel>
+        </Accordion>
       </div>
     )
   }
