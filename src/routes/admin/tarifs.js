@@ -94,8 +94,46 @@ class ChangeTarifs extends Component {
               </table>
             </center>
           </Panel>
-          <Panel bsStyle='primary' header='Collapsible Group Item #3' eventKey='3'>
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          <Panel bsStyle='primary' header='Les Cartes Saison' eventKey='3'>
+            <center>
+              <table>
+                <tbody>
+                  <tr>
+                    <th>FORFAIT - SAISON</th>
+                    <th>ADULTE</th>
+                    <th>ENFANT (-16ans)</th>
+                  </tr>
+                  <tr>
+                    <th>Pratique illimitée aux horaires d'ouverture au public (materiels non inclus)</th>
+                    <td>640 Euros</td>
+                    <td>580 Euros</td>
+                  </tr>
+                </tbody>
+              </table>
+            </center>
+          </Panel>
+          <Panel bsStyle='primary' header='Location' eventKey='4'>
+            <center>
+              <table>
+                <tbody>
+                  <tr>
+                    <th>LOCATION</th>
+                    <th>Wakeboard<br />Wakeskate <br />(pour modules)<br /></th>
+                    <th>Combinaison de néoprène</th>
+                  </tr>
+                  <tr>
+                    <th>2 Heures</th>
+                    <td>8 Euros</td>
+                    <td>5 Euros</td>
+                  </tr>
+                  <tr>
+                    <th>L'après-midi</th>
+                    <td>15 Euros</td>
+                    <td>8 Euros</td>
+                  </tr>
+                </tbody>
+              </table>
+            </center>
           </Panel>
         </Accordion>
       </div>
