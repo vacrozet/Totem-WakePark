@@ -33,12 +33,13 @@ class Upload extends Component {
     this.handleDeleteComment = this.handleDeleteComment.bind(this)
   }
   componentWillMount () {
-    // if (global.localStorage.getItem('token') !== '123456789') {
-    //   this.props.history.push('/')
-    // }
-    local().get('/picture/directory').then((res) => {
-      if (res.data.success === true) this.setState({listDir: res.data.result})
-    }).catch((err) => { console.log(err.response) })
+    if (global.localStorage.getItem('totem')) {
+      local().get('/picture/directory').then((res) => {
+        if (res.data.success === true) this.setState({listDir: res.data.result})
+      }).catch((err) => { console.log(err.response) })
+    } else {
+      this.props.history.push('/')
+    }
   }
   handleChange (evt) {
     this.setState({[evt.target.name]: evt.target.value})
