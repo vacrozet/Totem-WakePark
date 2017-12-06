@@ -1,3 +1,7 @@
+.slide img{
+    vertical-align:top;
+    border:0
+}
 .carousel {
     width: auto;
 }

@@ -23,9 +23,8 @@
 #selected .option {
   width: 300px;
   display: inline-block;
-  /* text-align: center; */
+  text-align: center;
 }
-
 
 #multiButton {
   width: 100vw;

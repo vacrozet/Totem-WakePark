@@ -1,0 +1,26 @@
+#bodyContact {
+  display: flex;
+  flex-wrap: wrap;
+}
+.FormContact {
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 20px;
+  padding: 10px;
+  width: 30%;
+  height: 503px;
+  /* max-width: 800px; */
+  min-width: 310px;
+  box-shadow: 0px 8px 8px 8px #aaa;
+}
+#resize {
+  resize: none;
+  height: 80px;
+}
+.title {
+  font-size: 28px;
+}
+
+#buttonContact {
+margin-top: 10px;
+}

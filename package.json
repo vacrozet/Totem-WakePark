@@ -14,7 +14,8 @@
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.1.1",
     "react-dropzone": "^4.2.3",
-    "react-responsive-carousel": "^3.1.29",
+    "react-google-maps": "^9.4.2",
+    "react-responsive-carousel": "git+https://git@github.com/vacrozet/react-responsive-carousel.git",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
     "rimraf": "^2.6.2"
