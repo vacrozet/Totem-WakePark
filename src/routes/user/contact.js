@@ -40,7 +40,7 @@ class Contact extends Component {
     return (
       <div id='bodyContact'>
         <div className='FormContact'>
-          <center id>
+          <center>
             <h4><u>Adresse du site:</u></h4>
             <p>TOTEM WAKE PARK</p>
             <p>Chemin des sablons</p>
