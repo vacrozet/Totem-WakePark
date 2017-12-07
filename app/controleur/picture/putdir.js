@@ -25,9 +25,7 @@ module.exports = (req, res) => {
         db.collection('Picture').find().toArray((error1, all) => {
           if (error1) return error(res, 500, false, 'Internal server error')
           let resultat = []
-          all.forEach(element => {
-            resultat.push(element._id)
-          })
+          all.forEach(element => { resultat.push(element._id) })
           res.status(200)
           res.json({
             success: true,

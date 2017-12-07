@@ -35,7 +35,10 @@ module.exports = (req, res) => {
       objToken.token = genToken()
       objToken.created_at = new Date().getTime()
       results[0].tokens.push(objToken)
-      db.collection('Users').updateOne({login: req.query.login}, {$set: {tokens: results[0].tokens}}).then((res1) => {
+      let time = Math.round(Date.now() / 100)
+      db.collection('Users').updateOne({login: req.query.login}, {
+        $set: {tokens: results[0].tokens, lastConnexion: time}
+      }).then((res1) => {
         return res.json({
           success: true,
           message: 'Connexion reussie',

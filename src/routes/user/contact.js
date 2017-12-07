@@ -39,7 +39,7 @@ class Contact extends Component {
         sujet: this.state.sujet,
         message: this.state.message
       }).then((res) => {
-        console.log('message Send')
+        if (res.data.success === true) console.log('message Send')
       }).catch((err) => { console.log(err.response) })
     }
   }

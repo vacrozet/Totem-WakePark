@@ -110,10 +110,9 @@ class Frontbarre extends Component {
     if (SuperUser === true && Connexion === true) {
       result = <NavDropdown eventKey={5} title='Reglages' id='basic-nav-dropdown'>
         <MenuItem eventKey={5.1} onClick={() => this.handleChangePage('/galerie/change')}><Glyphicon glyph='picture' /> Add Picture</MenuItem>
-        <MenuItem eventKey={5.2}><Glyphicon glyph='user' /> Add User</MenuItem>
-        <MenuItem eventKey={5.3} onClick={() => this.handleChangePage('/user')}><Glyphicon glyph='user' /> Gérer</MenuItem>
+        <MenuItem eventKey={5.2} onClick={() => this.handleChangePage('/user')}><Glyphicon glyph='user' /> Gérer</MenuItem>
         <MenuItem divider />
-        <MenuItem eventKey={5.3} onClick={this.handleLogOut.bind(this)}><Glyphicon glyph='cog' /> Deconnexion</MenuItem>
+        <MenuItem eventKey={5.2} onClick={this.handleLogOut.bind(this)}><Glyphicon glyph='cog' /> Deconnexion</MenuItem>
       </NavDropdown>
     } else if (Connexion === true) {
       result = <NavDropdown eventKey={5} title='Reglages' id='basic-nav-dropdown'>
