@@ -12,6 +12,7 @@ import Contact from './routes/user/contact.js'
 
 import Upload from './routes/admin/upload.js'
 import ChangeTarifs from './routes/admin/tarifs.js'
+import Users from './routes/admin/users.js'
 
 class Index extends Component {
   render () {
@@ -24,6 +25,7 @@ class Index extends Component {
           <Route exact path='/tarifs/change' component={ChangeTarifs} />
           <Route exact path='/tarifs' component={Tarifs} />
           <Route exact path='/contact' component={Contact} />
+          <Route exact path='/user' component={Users} />
           <Route exact path='/' component={Home} />
         </Switch>
       </div>
