@@ -10,8 +10,13 @@ class Tarifs extends Component {
     }
   }
 
+  componentWillMount () {
+  }
   handleChange (evt) {
     this.setState({[evt.target.name]: evt.target.value})
+  }
+  handleSelect () {
+    this.setState({ activKey: '3' })
   }
 
   render () {
