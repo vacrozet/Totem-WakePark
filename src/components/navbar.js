@@ -68,11 +68,13 @@ class Frontbarre extends Component {
     if (global.localStorage.getItem('totem') !== '') {
       this.setState({connexion: true})
     }
-    let token = global.localStorage.getItem('statut')
-    if (bcrypt.compareSync('true', token)) {
-      this.setState({superUser: true})
-    } else {
-      this.setState({superUser: false})
+    if (global.localStorage.getItem('statut')) {
+      let token = global.localStorage.getItem('statut')
+      if (bcrypt.compareSync('true', token)) {
+        this.setState({superUser: true})
+      } else {
+        this.setState({superUser: false})
+      }
     }
   }
 

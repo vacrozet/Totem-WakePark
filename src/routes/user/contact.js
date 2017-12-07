@@ -21,6 +21,14 @@ class Contact extends Component {
     this.setState({[evt.target.name]: evt.target.value})
   }
 
+  componentWillMount () {
+    this._isMounted = true
+  }
+
+  componentWillUnmount () {
+    this._isMounted = false
+  }
+
   handleSend () {
     if (this.state.name !== undefined && this.state.email !== undefined &&
       this.state.sujet !== undefined && this.state.message !== undefined) {
@@ -70,7 +78,7 @@ class Contact extends Component {
           </form>
         </div>
         <div className='FormContact'>
-          <MyFancyComponent />
+          {this._isMounted ? (<MyFancyComponent />) : (null)}
         </div>
       </div>
     )
