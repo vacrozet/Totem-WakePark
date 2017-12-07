@@ -41,12 +41,7 @@ module.exports = (req, res) => {
   object.time = Math.round(Date.now() / 100)
   db.get().then((db) => {
     db.collection('Picture').update({_id: req.body.dirName},
-      {
-        $push: {
-          pictures: object
-        }
-      }
-    )
+      { $push: { pictures: object } })
   })
   res.status(200)
   res.json({

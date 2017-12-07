@@ -21,6 +21,14 @@ class Contact extends Component {
     this.setState({[evt.target.name]: evt.target.value})
   }
 
+  componentWillMount () {
+    this._isMounted = true
+  }
+
+  componentWillUnmount () {
+    this._isMounted = false
+  }
+
   handleSend () {
     if (this.state.name !== undefined && this.state.email !== undefined &&
       this.state.sujet !== undefined && this.state.message !== undefined) {
@@ -31,7 +39,7 @@ class Contact extends Component {
         sujet: this.state.sujet,
         message: this.state.message
       }).then((res) => {
-        console.log('message Send')
+        if (res.data.success === true) console.log('message Send')
       }).catch((err) => { console.log(err.response) })
     }
   }
@@ -70,7 +78,7 @@ class Contact extends Component {
           </form>
         </div>
         <div className='FormContact'>
-          <MyFancyComponent />
+          {this._isMounted ? (<MyFancyComponent />) : (null)}
         </div>
       </div>
     )

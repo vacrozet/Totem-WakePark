@@ -11,9 +11,8 @@ function error (res, code, bool, message) {
 }
 
 module.exports = (req, res) => {
-  if (req.query.dir === undefined || req.query.idPic === undefined || req.query.picType === undefined) {
-    return error(res, 403, false, 'Query Not Found')
-  }
+  if (req.query.dir === undefined || req.query.idPic === undefined ||
+    req.query.picType === undefined) return error(res, 403, false, 'Query Not Found')
   db.get().then((db) => {
     db.collection('Picture').findOne({_id: req.query.dir}).then((result) => {
       result.pictures = result.pictures.filter(tab => tab.id !== req.query.idPic)

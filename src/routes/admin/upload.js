@@ -37,9 +37,7 @@ class Upload extends Component {
       local().get('/picture/directory').then((res) => {
         if (res.data.success === true) this.setState({listDir: res.data.result})
       }).catch((err) => { console.log(err.response) })
-    } else {
-      this.props.history.push('/')
-    }
+    } else this.props.history.push('/')
   }
   handleChange (evt) {
     this.setState({[evt.target.name]: evt.target.value})
@@ -100,16 +98,12 @@ class Upload extends Component {
             createDir: '',
             showModal: false
           })
-        } else {
-          console.log('autre probleme')
-        }
+        } else console.log('autre probleme')
       }).catch((err) => { console.log(err.response) })
     }
   }
   handleShowModalDirectory () {
-    if (this.state.dirName.trim() !== '') {
-      this.setState({ showModalDirectory: true })
-    }
+    if (this.state.dirName.trim() !== '') this.setState({ showModalDirectory: true })
   }
   handleDeleteDirectory () {
     if (this.state.dirName.trim() !== '') {
