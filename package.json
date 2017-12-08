@@ -26,6 +26,7 @@
   "scripts": {
     "start-front": "react-scripts start",
     "start-api": "nodemon app/index.js",
+    "start-init": "node app/start.js",
     "start": "npm-run-all -p start-front start-api",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
