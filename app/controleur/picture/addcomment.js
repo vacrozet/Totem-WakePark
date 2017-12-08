@@ -21,6 +21,7 @@ module.exports = (req, res) => {
   })
   res.status(200)
   res.json({
-    success: true
+    success: true,
+    message: 'Comment Added'
   })
 }

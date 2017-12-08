@@ -20,6 +20,6 @@ module.exports = (req, res) => {
   res.status(200)
   res.json({
     success: true,
-    message: 'Commentaire Supprimé'
+    message: 'Comment deleted'
   })
 }

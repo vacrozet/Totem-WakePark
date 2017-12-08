@@ -10,7 +10,7 @@ router.delete('/picture', middle('USER'), require('../controleur/picture/deleteP
 router.patch('/comment', middle('USER'), require('../controleur/picture/addComment.js'))
 router.delete('/comment', middle('USER'), require('../controleur/picture/deleteComment.js'))
 router.get('/album', middle('USER'), require('../controleur/picture/getalbum.js'))
-router.get('/getpicture/:dir/:folder/:name/:type', middle('USER'), require('../controleur/picture/getpicture.js'))
+router.get('/getpicture/:dir/:folder/:name/:type', require('../controleur/picture/getpicture.js'))
 router.get('/all', require('../controleur/picture/all.js'))
 
 module.exports = router
