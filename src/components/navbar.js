@@ -65,7 +65,7 @@ class Frontbarre extends Component {
   }
 
   componentWillMount () {
-    if (global.localStorage.getItem('totem') !== '') {
+    if (global.localStorage.getItem('totem')) {
       this.setState({connexion: true})
     }
     if (global.localStorage.getItem('statut')) {
