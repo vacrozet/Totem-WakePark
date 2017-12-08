@@ -104,9 +104,18 @@ class Users extends Component {
         password: this.state.password
       }).then((res) => {
         if (res.data.success === true) {
+          this.props.notification.addNotification({
+            message: res.data.message,
+            level: 'success'
+          })
           this.getAllUser()
           let pass = generator.generate({length: 5, numbers: true})
           this.setState({password: pass})
+        } else {
+          this.props.notification.addNotification({
+            message: res.data.message,
+            level: 'error'
+          })
         }
         this.setState({showModalCreate: false, newUser: ''})
       }).catch((err) => { console.log(err.response) })
@@ -117,12 +126,24 @@ class Users extends Component {
       login: login,
       superUser: bool
     }).then((res) => {
-      if (res.data.success === true) this.getAllUser()
+      if (res.data.success === true) {
+        this.getAllUser()
+        this.props.notification.addNotification({
+          message: res.data.message,
+          level: 'success'
+        })
+      }
     }).catch((err) => { console.log(err.response) })
   }
   handleDeleteUser (id) {
     local().delete('user/delete', {params: {id: id}}).then((res) => {
-      if (res.data.success === true) this.getAllUser()
+      if (res.data.success === true) {
+        this.getAllUser()
+        this.props.notification.addNotification({
+          message: res.data.message,
+          level: 'success'
+        })
+      }
     }).catch((err) => { console.log(err.response) })
   }
   render () {

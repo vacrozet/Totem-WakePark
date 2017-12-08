@@ -15,22 +15,26 @@ module.exports = (req, res) => {
   req.body.password === '') return error(res, 403, false, 'Not autorized')
   var hash = bcrypt.hashSync(req.body.password, 10)
   db.get().then((db) => {
-    let id = uuid()
-    let tab = {
-      _id: id,
-      login: req.body.login,
-      passwd: hash,
-      actif: false,
-      superUser: false,
-      lastConnexion: '',
-      tokens: []
-    }
-    db.collection('Users').insert(tab, null, (error, result) => {
-      if (error) return error(res, 500, 'Internal server error')
-    })
-    res.json({
-      success: true,
-      message: 'User Créer'
+    db.collection('Users').find({login: req.body.login}).toArray((err, resultat) => {
+      if (err) return error(res, 500, 'Internal server error')
+      if (resultat.length !== 0) return error(res, 200, false, 'Utilisateur déjà présent')
+      let id = uuid()
+      let tab = {
+        _id: id,
+        login: req.body.login,
+        passwd: hash,
+        actif: false,
+        superUser: false,
+        lastConnexion: '',
+        tokens: []
+      }
+      db.collection('Users').insert(tab, null, (error, result) => {
+        if (error) return error(res, 500, 'Internal server error')
+      })
+      res.json({
+        success: true,
+        message: 'User Créer'
+      })
     })
   })
 }

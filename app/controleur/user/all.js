@@ -19,7 +19,8 @@ module.exports = (req, res) => {
       if (err) error(res, 500, false, 'Internal Server Error')
       result = result.filter(res => res.login !== req.user.login)
       result.forEach(element => {
-        element.lastConnexion = getMomentJs(element.lastConnexion)
+        if (element.lastConnexion !== '') element.lastConnexion = getMomentJs(element.lastConnexion)
+        else element.lastConnexion = 'Jamais'
         delete element.tokens
         delete element.passwd
       })

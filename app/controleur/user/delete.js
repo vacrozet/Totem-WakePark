@@ -5,6 +5,6 @@ module.exports = (req, res) => {
   res.status(200)
   res.json({
     success: true,
-    message: 'User delete'
+    message: 'User deleted'
   })
 }

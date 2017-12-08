@@ -14,18 +14,54 @@ import Upload from './routes/admin/upload.js'
 import ChangeTarifs from './routes/admin/tarifs.js'
 import Users from './routes/admin/users.js'
 
+var NotificationSystem = require('react-notification-system')
+
 class Index extends Component {
+  constructor (props) {
+    super(props)
+    this._notificationSystem = null
+    this.state = {
+      _notificationSystem: false
+    }
+  }
+  componentDidMount () {
+    this._notificationSystem = this.refs.notificationSystem
+    this.setState({upNotifSys: true})
+  }
+
   render () {
     return (
       <div>
-        <Frontbarre id='navbar' history={this.props.history} match={this.props.match} location={this.props.location} />
+        <NotificationSystem ref='notificationSystem' />
+        {(this.state.upNotifSys !== false) ? (
+          <Frontbarre id='navbar'
+            history={this.props.history}
+            match={this.props.match}
+            location={this.props.location}
+            notification={this._notificationSystem}
+            />
+        ) : (
+          null
+        )}
         <Switch>
-          <Route exact path='/galerie/change' component={Upload} />
-          <Route exact path='/galerie' component={Galerie} />
-          <Route exact path='/tarifs/change' component={ChangeTarifs} />
-          <Route exact path='/tarifs' component={Tarifs} />
-          <Route exact path='/contact' component={Contact} />
-          <Route exact path='/user' component={Users} />
+          <Route exact path='/galerie/change' render={({history, match, location}) =>
+            <Upload history={history} match={match} notification={this._notificationSystem} />
+          } />
+          <Route exact path='/galerie' render={({history, match, location}) =>
+            <Galerie history={history} match={match} notification={this._notificationSystem} />
+          } />
+          <Route exact path='/tarifs/change' render={({history, match, location}) =>
+            <ChangeTarifs history={history} match={match} notification={this._notificationSystem} />
+          } />
+          <Route exact path='/tarifs' render={({history, match, location}) =>
+            <Tarifs history={history} match={match} notification={this._notificationSystem} />
+          } />
+          <Route exact path='/contact' render={({history, match, location}) =>
+            <Contact history={history} match={match} notification={this._notificationSystem} />
+          } />
+          <Route exact path='/user' render={({history, match, location}) =>
+            <Users history={history} match={match} notification={this._notificationSystem} />
+          } />
           <Route exact path='/' component={Home} />
         </Switch>
       </div>

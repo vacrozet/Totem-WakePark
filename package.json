@@ -17,6 +17,7 @@
     "react-dom": "^16.1.1",
     "react-dropzone": "^4.2.3",
     "react-google-maps": "^9.4.2",
+    "react-notification-system": "0.2.15",
     "react-responsive-carousel": "git+https://git@github.com/vacrozet/react-responsive-carousel.git",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
@@ -25,6 +26,7 @@
   "scripts": {
     "start-front": "react-scripts start",
     "start-api": "nodemon app/index.js",
+    "start-init": "node app/start.js",
     "start": "npm-run-all -p start-front start-api",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

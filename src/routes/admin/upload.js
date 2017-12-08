@@ -60,6 +60,10 @@ class Upload extends Component {
           dirName: this.state.dirName
         }).then((res) => {
           if (res.data.success === true) {
+            this.props.notification.addNotification({
+              message: res.data.message,
+              level: 'success'
+            })
             this.setState({isLoading: false})
             local().get('/picture/album', {
               params: {
@@ -93,12 +97,16 @@ class Upload extends Component {
         name: this.state.createDir
       }).then((res) => {
         if (res.data.success === true) {
+          this.props.notification.addNotification({
+            message: res.data.message,
+            level: 'success'
+          })
           this.setState({
             listDir: res.data.result,
             createDir: '',
             showModal: false
           })
-        } else console.log('autre probleme')
+        }
       }).catch((err) => { console.log(err.response) })
     }
   }
@@ -113,6 +121,10 @@ class Upload extends Component {
         }
       }).then((res) => {
         if (res.data.success === true) {
+          this.props.notification.addNotification({
+            message: res.data.message,
+            level: 'error'
+          })
           this.setState({
             showModalDirectory: false,
             dirName: '',
@@ -278,6 +290,10 @@ class Upload extends Component {
         dir: this.state.dirName
       }).then((res) => {
         if (res.data.success === true) {
+          this.props.notification.addNotification({
+            message: res.data.message,
+            level: 'success'
+          })
           this.setState({
             idPic: '',
             writeComment: '',
@@ -320,6 +336,10 @@ class Upload extends Component {
         }
       }).then((res) => {
         if (res.data.success === true) {
+          this.props.notification.addNotification({
+            message: res.data.message,
+            level: 'error'
+          })
           this.setState({showModalComment: false})
           local().get('/picture/album', {
             params: {
@@ -347,6 +367,10 @@ class Upload extends Component {
         }
       }).then((res) => {
         if (res.data.success === true) {
+          this.props.notification.addNotification({
+            message: res.data.message,
+            level: 'error'
+          })
           local().get('/picture/album', {
             params: {
               dir: this.state.dirName
