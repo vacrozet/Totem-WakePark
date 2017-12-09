@@ -62,7 +62,9 @@ class Index extends Component {
           <Route exact path='/user' render={({history, match, location}) =>
             <Users history={history} match={match} notification={this._notificationSystem} />
           } />
-          <Route exact path='/' component={Home} />
+          <Route path='/' render={({ history, match, location }) =>
+            <Home history={history} match={match} notification={this._notificationSystem} />
+          } />
         </Switch>
       </div>
     )

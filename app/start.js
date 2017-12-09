@@ -23,6 +23,12 @@ let user = {
   tokens: []
 }
 
+let mail = {
+  _id: 'Newsletter',
+  lastAdded: '',
+  Mail: []
+}
+
 // Connect to the db
 MongoClient.connect('mongodb://localhost:27017/totem_wake_park', (err, db) => {
   if (err) { return console.dir(err) }
@@ -40,5 +46,14 @@ MongoClient.connect('mongodb://localhost:27017/totem_wake_park', (err, db) => {
       console.log('User Insert')
     }
   })
+  db.collection('Newsletter').insert(mail, null, (err, result) => {
+    if (err) {
+      console.dir(err)
+      process.exit()
+    } else {
+      console.log('newsletter Insert')
+    }
+  })
+
   db.close()
 })

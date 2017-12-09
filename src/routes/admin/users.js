@@ -26,7 +26,7 @@ class Users extends Component {
     }).catch((err) => { console.log(err.response) })
   }
   componentWillMount () {
-    if (global.localStorage.getItem('totem') !== '') this.setState({connexion: true})
+    if (global.localStorage.getItem('totem')) this.setState({connexion: true})
     if (global.localStorage.getItem('statut')) {
       let token = global.localStorage.getItem('statut')
       if (!bcrypt.compareSync('true', token)) {
