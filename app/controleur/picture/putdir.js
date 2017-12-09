@@ -17,7 +17,7 @@ module.exports = (req, res) => {
       if (result.length >= 1) return error(res, 302, false, 'Dossier existant')
       let tab = {
         _id: name,
-        time: Math.round(Date.now() / 100),
+        time: Math.round(Date.now() / 1000),
         pictures: []
       }
       db.collection('Picture').insert(tab, null, (error, results) => {

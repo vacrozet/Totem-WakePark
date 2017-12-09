@@ -26,17 +26,20 @@ let user = {
 let mail = {
   _id: 'Newsletter',
   lastAdded: '',
-  Mail: []
+  mail: []
 }
 
 // Connect to the db
 MongoClient.connect('mongodb://localhost:27017/totem_wake_park', (err, db) => {
   if (err) { return console.dir(err) }
   db.createCollection('Users', () => {
-    console.log(`Create Table 'Users'`)
+    console.log(`Create Table Users`)
   })
   db.createCollection('Picture', () => {
     console.log(`Create Table Picture`)
+  })
+  db.createCollection('Newsletter', () => {
+    console.log(`Create Table Newsletter`)
   })
   db.collection('Users').insert(user, null, (err, result) => {
     if (err) {

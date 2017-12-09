@@ -19,7 +19,7 @@ class Newsletter extends Component {
   handleAddNewsletter (evt) {
     if (evt.key === 'Enter' || evt.target.value === 'submit') {
       if (this.state.mail.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-        local().put('/newsletter/mail', {
+        local().put('/newsletter/add', {
           mail: this.state.mail
         }).then((res) => {
           if (res.data.success === true) {
@@ -30,7 +30,7 @@ class Newsletter extends Component {
           } else {
             this.props.notification.addNotification({
               level: 'error',
-              message: res.data.message
+              message: 'vous êtes déjà abonné'
             })
           }
         })
