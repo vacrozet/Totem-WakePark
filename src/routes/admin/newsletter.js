@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import bcrypt from 'bcryptjs'
 import { Button } from 'react-bootstrap'
 import { local } from '../../utils/api.js'
+import moment from 'moment'
 
 class NewsLetter extends Component {
   constructor (props) {
@@ -15,7 +16,7 @@ class NewsLetter extends Component {
 
   getAllMail () {
     local().get('/newsletter/mail').then((res) => {
-      if (res.data.success === true) this.setState({allMail: res.data.result[0].mail})
+      if (res.data.success === true) this.setState({allMail: res.data.result.mail})
     }).catch((err) => { console.log(err.response) })
   }
   componentWillMount () {
@@ -29,11 +30,7 @@ class NewsLetter extends Component {
 
   handleDeleteMail (mail) {
     if (mail !== undefined) {
-      local().delete('/newsletter/mail', {
-        params: {
-          mail: mail
-        }
-      }).then((res) => {
+      local().delete('/newsletter/mail', {params: {mail: mail}}).then((res) => {
         if (res.data.success === true) this.getAllMail()
       }).catch((err) => { console.log(err.response) })
     }
@@ -54,7 +51,7 @@ class NewsLetter extends Component {
                 return (
                   <tr key={index}>
                     <td>{res.mail}</td>
-                    <td>{res.time}</td>
+                    <td>{moment.unix(res.time).format('l')}</td>
                     <td>
                       <Button name={res.mail} bsStyle='danger' onClick={() => this.handleDeleteMail(res.mail)}>
                         Supprimer Mail

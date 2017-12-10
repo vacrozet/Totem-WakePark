@@ -11,14 +11,14 @@ function error (res, code, bool, message) {
 module.exports = (req, res) => {
   if (req.user.superUser !== true) return error(res, 401, false, 'User Unauthorized')
   db.get().then((db) => {
-    db.collection('Newsletter').find({}).toArray((err, result) => {
+    db.collection('Newsletter').find({_id: 'Newsletter'}).toArray((err, result) => {
       if (err) return error(res, 500, false, 'Internal Server Errror')
-      if (result) {
+      if (result[0]) {
         res.status(200)
         return res.json({
           success: true,
           message: 'Tab trouvé',
-          result: result
+          result: result[0]
         })
       }
     })
