@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Newsletter from './user/newsletter.js'
+import Weather from '../components/weather.js'
 import '../css/home.css'
 
 class Home extends Component {
@@ -13,8 +14,15 @@ class Home extends Component {
   render () {
     return (
       <div>
-        <div className='new'>
-          <Newsletter notification={this.props.notification} />
+        <div className='bodyHome'>
+          <div className='gridHome'>
+            <div id='weather'>
+              <Weather />
+            </div>
+          </div>
+          <div className='new'>
+            <Newsletter notification={this.props.notification} />
+          </div>
         </div>
       </div>
     )
