@@ -18,6 +18,8 @@ class Weather extends Component {
     }).catch((err) => { console.log(err.response) })
   }
 
+
+  
   render () {
     return (
       <div>
