@@ -10,13 +10,14 @@
   width: 100vw;
   height: 82%;
   border: solid 1px blue;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  align-content: flex-start;
 }
 .new {
   padding: 5px;
   background-color: #9E9E9E;
 }
 .homeComponent {
-  width: 40%;
+  width: 520px;
   height: 200px;
 }
