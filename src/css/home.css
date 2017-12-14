@@ -7,10 +7,15 @@
 .gridHome {
   display: flex;
   flex-wrap: wrap;
-  border: solid 1px red;
-  width: 40%;
+  width: 100vw;
+  height: 82%;
+  border: solid 1px blue;  
 }
 .new {
   padding: 5px;
   background-color: #9E9E9E;
+}
+#weather {
+  width: 40%;
+  height: 200px;
 }
