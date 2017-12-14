@@ -16,7 +16,10 @@ class Home extends Component {
       <div>
         <div className='bodyHome'>
           <div className='gridHome'>
-            <div id='weather'>
+            <div className='homeComponent'>
+              <Weather />
+            </div>
+            <div className='homeComponent'>
               <Weather />
             </div>
           </div>

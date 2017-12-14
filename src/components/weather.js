@@ -27,8 +27,8 @@ class Weather extends Component {
   render () {
     return (
       <div className='meteo' style={{backgroundImage: 'url(' + this.state.icon + ')'}}>
-        {this.state.location}
-        {this.state.temp}
+        <div>{this.state.location}</div>
+        <div>{this.state.temp}</div>
       </div>
     )
   }

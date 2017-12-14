@@ -9,13 +9,14 @@
   flex-wrap: wrap;
   width: 100vw;
   height: 82%;
-  border: solid 1px blue;  
+  border: solid 1px blue;
+  justify-content: space-around;
 }
 .new {
   padding: 5px;
   background-color: #9E9E9E;
 }
-#weather {
+.homeComponent {
   width: 40%;
   height: 200px;
 }
