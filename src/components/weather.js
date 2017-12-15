@@ -17,7 +17,7 @@ class Weather extends Component {
         console.log(res.data.result)
         this.setState({
           location: res.data.result.name,
-          temp: res.data.result.main.temp,
+          temp: res.data.result.main.temp - 273.15,
           icon: `http://openweathermap.org/img/w/${res.data.result.weather[0].icon}.png`
         })
       }
@@ -25,10 +25,18 @@ class Weather extends Component {
   }
 
   render () {
+    const meteo = (<i className='wi wi-day-sunny' />)
     return (
       <div className='meteo' style={{backgroundImage: 'url(' + this.state.icon + ')'}}>
-        <div>{this.state.location}</div>
-        <div>{this.state.temp}</div>
+        <div className='info'>
+          {meteo}
+          <div className='result'>
+            {this.state.location}
+          </div>
+          <div className='result'>
+            {this.state.temp} °C
+          </div>
+        </div>
       </div>
     )
   }

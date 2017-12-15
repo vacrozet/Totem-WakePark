@@ -11,17 +11,21 @@ class Home extends Component {
     }
   }
 
+  // <div className='gridHome'>
+  //   coucou
+  // </div>
   render () {
     return (
-      <div>
+      <div className='test'>
         <div className='bodyHome'>
-          <div className='gridHome'>
-            <div className='homeComponent'>
-              <Weather />
-            </div>
-            <div className='homeComponent'>
-              <Weather />
-            </div>
+          <div className='homeComponent'>
+            <Weather />
+          </div>
+          <div className='homeComponent'>
+            <Weather />
+          </div>
+          <div className='homeComponent'>
+            <Weather />
           </div>
           <div className='new'>
             <Newsletter notification={this.props.notification} />
