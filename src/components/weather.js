@@ -17,6 +17,7 @@ class Weather extends Component {
   componentWillMount () {
     local().get('/tasks/weather').then((res) => {
       if (res.data.success === true) {
+        console.log(res.data.result)
         const prefix = 'wi wi-'
         const code = res.data.result.weather[0].id
         var icon = weatherIcons[code].icon
@@ -24,7 +25,6 @@ class Weather extends Component {
           icon = 'day-' + icon
         }
         icon = prefix + icon
-        console.log(res.data.result)
         this.setState({
           location: res.data.result.name,
           temp: (res.data.result.main.temp - 273.15).toFixed(2),
@@ -33,8 +33,6 @@ class Weather extends Component {
           icon: icon,
           lever: moment.unix(res.data.result.sys.sunrise).format('LT'),
           coucher: moment.unix(res.data.result.sys.sunset).format('LT')
-        }, () => {
-          console.log('coucou')
         })
       }
     }).catch((err) => { console.log(err.response) })
@@ -55,7 +53,7 @@ class Weather extends Component {
             {this.state.temp} °C
           </div>
           <div className='result1'>
-            <div className='result11'>{this.state.lever}<br />{this.state.coucher}</div>
+            <div className='result11'><i href='../image/wi-sunset.svg' />{this.state.lever}<br />{this.state.coucher}</div>
             <div className='result11'>Min: {this.state.tempMin}°C<br />Max: {this.state.tempMax}°C</div>
           </div>
         </div>
@@ -65,11 +63,3 @@ class Weather extends Component {
 }
 
 export default Weather
-
-// <div className=''>
-// <div className='result'>
-//   {this.state.location}
-// </div>
-// <div className='result'>
-//   {this.state.temp} °C
-// </div>

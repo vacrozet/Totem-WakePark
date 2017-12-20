@@ -6,7 +6,7 @@
 
 .homeComponent {
   width: 40%;
-  height: 200px;
+  height: 300px;
   margin: 5px;
   min-width: 310px;
 }
@@ -17,6 +17,7 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap; 
+  flex-direction: row;
 }
 
 .test {

@@ -21,12 +21,6 @@ class Home extends Component {
           <div className='homeComponent'>
             <Weather />
           </div>
-          <div className='homeComponent'>
-            <Weather />
-          </div>
-          <div className='homeComponent'>
-            <Weather />
-          </div>
           <div className='new'>
             <Newsletter notification={this.props.notification} />
           </div>
