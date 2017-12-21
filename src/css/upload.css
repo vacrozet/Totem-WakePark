@@ -7,13 +7,19 @@
   display: inline-block;
   width: 300px;
   margin-bottom: 10px;
-  height: 33px;
+  height: 34px;
 }
 #formulaire .buttonform {
   display: inline-block;
   text-align: center;
   width: 100px;
-  height: 33px;
+  height: 34px;
+}
+#formulaire .buttonformimage {
+  display: inline-block;
+  text-align: center;
+  width: 200px;
+  height: 34px;
 }
 
 #selected {

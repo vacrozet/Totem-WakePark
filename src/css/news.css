@@ -5,3 +5,14 @@
     flex-direction: column;
     border: solid 1px red;
 }
+.barre {
+    display: inline-table;
+}
+
+.imagePreview {
+    align-items: center;
+    height: 300px;
+    width: 500px;
+    background-color: gray;
+    border-radius: 5px;
+}
