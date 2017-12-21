@@ -14,6 +14,7 @@ import Upload from './routes/admin/upload.js'
 import ChangeTarifs from './routes/admin/tarifs.js'
 import Users from './routes/admin/users.js'
 import NewsLetter from './routes/admin/newsletter.js'
+import News from './routes/admin/news.js'
 
 var NotificationSystem = require('react-notification-system')
 
@@ -65,6 +66,9 @@ class Index extends Component {
           } />
           <Route exact path='/newsletter' render={({ history, match, location }) =>
             <NewsLetter history={history} match={match} notification={this._notificationSystem} />
+          } />
+          <Route exact path='/change/news' render={({history, match, location}) =>
+            <News history={history} match={match} notification={this._notificationSystem} />
           } />
           <Route path='/' render={({ history, match, location }) =>
             <Home history={history} match={match} notification={this._notificationSystem} />
