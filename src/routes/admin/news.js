@@ -79,76 +79,7 @@ class News extends Component {
   render () {
     return (
       <div>
-        <div id='formulaire'>
-          <h1>Créer une Actu</h1>
-          <FormGroup bsSize='small' className='barre'>
-            <FormControl
-              componentClass='select'
-              placeholder='select'
-              onChange={this.handleChange.bind(this)}>
-              <option value=''>Type D'évènement</option>
-              {this.state.type.map((tab, index) => {
-                return (<option key={index} value={tab}>{tab}</option>)
-              })}
-            </FormControl>
-            <FormControl
-              className='inputform'
-              name='name'
-              type='text'
-              placeholder={'Nom de l\'évènement'}
-              value={this.state.createDir}
-              onChange={this.handleChange.bind(this)}
-            />
-            {' '}
-            {this.state.name.trim() !== '' ? (
-              <Button
-                className='buttonform'
-                bsStyle='primary'
-                name='submit'
-                onClick={() => this.setState({ showModal: true })}
-              >
-                Créer
-            </Button>
-            ) : (
-              <Button
-                className='buttonform'
-                bsStyle='primary'
-                name='submit'
-                disabled
-                onClick={() => this.setState({ showModal: true })}
-              >
-                Créer
-            </Button>
-            )}
-            <center><h3>Texte</h3></center>
-            <FormControl
-              id='resize'
-              componentClass='textarea'
-              type='textaera'
-              placeholder='Saisir le texte'
-              name='text'
-              onChange={this.handleChange.bind(this)}
-              />
-            <h3>Image</h3>
-            <Dropzone
-              disablePreview
-              className='buttonformimage'
-              accept='image/png, image/jpeg'
-              maxSize={10000000000}
-              onDrop={this.onDrop.bind(this)}>
-              <Button
-                className='buttonformimage'
-                bsStyle='primary'
-                name='submit'
-              >
-            Charger une Image
-            </Button>
-            </Dropzone>
-          </FormGroup>
-          <div className='imagePreview' >
-          coucou
-          </div>
-        </div>
+        coucou
       </div>
     )
   }
