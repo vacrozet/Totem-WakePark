@@ -79,7 +79,10 @@ class News extends Component {
   render () {
     return (
       <div>
-        coucou
+        liste des evenements.
+        <div>
+          formulaire
+        </div>
       </div>
     )
   }
