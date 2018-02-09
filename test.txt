@@ -1,0 +1,3 @@
+PHOTO:
+    - PIXA-BAY --> 1920 x 1439 --> environ 976KB
+    - Photos passé sous photoshop pour aléger le poid.
