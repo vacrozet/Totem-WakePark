@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
 }
-.FormContact {
+#bodyContact .FormContact {
   border-radius: 5px;
   margin: auto;
   margin-top: 20px;
@@ -13,14 +13,16 @@
   min-width: 310px;
   box-shadow: 0px 8px 8px 8px #aaa;
 }
-#resize {
-  resize: none;
-  height: 80px;
-}
-.title {
+
+#bodyContact .FormContact .title {
   font-size: 28px;
 }
 
-#buttonContact {
+#bodyContact .FormContact #resize {
+  resize: none;
+  height: 80px;
+}
+
+#bodyContact .FormContact #buttonContact {
 margin-top: 10px;
 }

@@ -12,5 +12,6 @@ router.delete('/comment', middle('USER'), require('../controleur/picture/deleteC
 router.get('/album', middle('USER'), require('../controleur/picture/getalbum.js'))
 router.get('/getpicture/:dir/:folder/:name/:type', require('../controleur/picture/getpicture.js'))
 router.get('/all', require('../controleur/picture/all.js'))
+router.get('/getone', require('../controleur/picture/getOne.js'))
 
 module.exports = router

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import bcrypt from 'bcryptjs'
-import Dropzone from 'react-dropzone'
+// import Dropzone from 'react-dropzone'
 import { local } from '../../utils/api.js'
-import { FormGroup, FormControl, Button } from 'react-bootstrap'
+// import { FormGroup, FormControl, Button } from 'react-bootstrap'
 
 class News extends Component {
   constructor (props) {

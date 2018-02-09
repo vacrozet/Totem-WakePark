@@ -31,8 +31,9 @@
   border-radius: 0px;
   text-align: center;
   margin-bottom: 5px;
-  /* position: fixed;
+  position: fixed;
   top: 0;
   width: 100%;
-  display: block; */
+  display: block;
+  z-index: 100;
 }

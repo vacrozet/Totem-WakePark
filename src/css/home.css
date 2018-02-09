@@ -1,27 +1,207 @@
-.new {
-  width: 100%;
-  padding: 5px;
-  background-color: #9E9E9E;
+@font-face {
+  font-family: 'Supreme';
+  src: url('../police/supreme_bw90/SUPREME_BW90.ttf');
 }
 
-.homeComponent {
-  width: 45%;
-  height: 300px;
-  margin: 5px;
-  min-width: 310px;
-}
 
 .bodyHome {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* margin-top: 52px; */
+  /* border: solid 1px green; */
+}
+
+.bodyHome .home {
   height: auto;
   width: 1300px;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap; 
   flex-direction: row;
+  overflow: auto;
+}
+.bodyHome .home .homeComponent {
+  width: 45%;
+  height: 300px;
+  margin: 5px;
+  min-width: 310px;
 }
 
-.test {
+.bodyHome .home .new {
+  width: 100%;
+  /* padding: 5px; */
+  background-color: #9E9E9E;
+}
+
+.bodyHome #parallaxe1 .title {
+  margin: auto;
+  font-size: 32px;
+  color: #fff;
+  padding: 10px;
+  background-color: #111;
+  letter-spacing: 10px;
+  text-align: center;
   display: flex;
-  justify-content: center;
-  /* border: solid 1px green; */
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.bodyHome #parallaxe1 .title .text {
+  text-align: center;
+}
+
+.bodyHome .div1 {
+  padding: 15px;
+  height: auto;
+  width: 100vw;
+  display: flex;
+  background-color: #F5F5F5;
+}
+
+.bodyHome .div1 .text {
+  margin: auto;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bodyHome .div1 .text .title {
+  font-family: Supreme;
+  color: #424242;
+  font-size: 50px;
+  text-align: center;
+}
+.bodyHome .div1 .text .title2 {
+  font-family: Supreme;
+  color: #424242;
+  font-size: 30px;
+  text-align: center; 
+}
+.bodyHome .div1 .text .paragraphe {
+  font-family: Supreme;
+  color: #424242;
+  font-size: 30px;
+  text-align: center;  
+}
+
+.bodyHome .div2 {
+  padding: 15px;
+  height: auto;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: #F5F5F5;
+}
+.bodyHome .div2 .homeComponent {
+  width: 30%;
+  height: 300px;
+  margin: 5px;
+  min-width: 310px;
+}
+
+
+/***************************************************/
+/***************************************************/
+/****************                   ****************/
+/****************     PARALLAXE     ****************/
+/****************                   ****************/
+/***************************************************/
+/***************************************************/
+
+.bodyHome #parallaxe1 {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+
+  /* The image used */
+  background-image: url('../image/wakeboard1.jpg');
+
+  /* Set a specific height */
+  min-height: 500px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.69;
+ z-index: 0; 
+}
+
+.bodyHome #parallaxe2 {
+  width: 100vw;
+  height: 300px;
+  display: flex;
+
+  /* The image used */
+  background-image: url('../image/wakeboard2.jpg');
+
+  /* Set a specific height */
+  /* min-height: 500px; */
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.69;
+ z-index: 0; 
+}
+
+.bodyHome #parallaxe3 {
+  width: 100vw;
+  height: 455px;
+  display: flex;
+
+  /* The image used */
+  background-image: url('../image/wakeboard1.jpg');
+
+  /* Set a specific height */
+  /* min-height: 500px; */
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.69;
+ z-index: 0; 
+}
+
+/***************************************************/
+/***************************************************/
+/****************                   ****************/
+/****************   MEDIA QUERIES   ****************/
+/****************                   ****************/
+/***************************************************/
+/***************************************************/
+
+@media (max-width: 500px) {
+  .bodyHome #parallaxe1 .title .text {
+    text-align: center;
+    width: 100%;
+  }    
+}
+
+@media (max-width: 800px) {
+  .bodyHome .div1 .text .title {
+    font-family: Supreme;
+    color: #424242;
+    font-size: 40px;
+    text-align: center;
+  }
+  .bodyHome .div1 .text .title2 {
+    font-family: Supreme;
+    color: #424242;
+    font-size: 20px;
+    text-align: center; 
+  }
+  .bodyHome .div1 .text .paragraphe {
+    font-family: Supreme;
+    color: #424242;
+    font-size: 20px;
+    text-align: center;  
+  }
 }

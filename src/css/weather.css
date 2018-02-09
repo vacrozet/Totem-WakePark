@@ -1,17 +1,20 @@
-.style {
-    size: 25%;
-}
+@font-face {
+    font-family: 'Supreme';
+    src: url('../police/supreme_bw90/SUPREME_BW90.ttf');
+  }
+  
 .meteo {
     display: flex;
     flex-direction: row;
     height: 100%;
     width: 100%;
-    border-radius: 5px;
-    background-color: #BDBDBD;
+    border-radius: 2px;
+    background-color: #424242;
 }
 .meteo .partie1 {
     height: 100%;
     width: 39%;
+    color: #F5F5F5;
 }
 .meteo .partie2 {
     height: 100%;
@@ -27,14 +30,18 @@
     vertical-align: middle;
     line-height: 3.5em;
     text-align: center;
-    color: white;
-    font-size: 1.5em; 
+    color: #F5F5F5;
+    font-size: 1.5em;
+    font-family: Supreme;
+    letter-spacing: 3px;
 }
 .meteo .partie2 .result1 {
     height: 33%;
     width: 100%;
     display: flex;
     flex-direction: row;
+    font-family: Supreme;
+    letter-spacing: 3px;
     justify-content: space-around;
 }
 .meteo .partie2 .result1 .result11 {
@@ -43,7 +50,9 @@
     line-height: 2;
     padding: 5px;
     text-align: center;
-    background-color: #9E9E9E;
+    background-color: #EEEEEE;
+    font-family: Supreme;
+    letter-spacing: 2px;
     border-radius: 5px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 255, .50);
 }
