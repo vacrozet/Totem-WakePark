@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Newsletter from './user/newsletter.js'
 import Weather from '../components/weather.js'
-import News from '../components/news.js'
+// import News from '../components/news.js'
 import '../css/home.css'
 
 class Home extends Component {
@@ -36,27 +36,14 @@ class Home extends Component {
             <Weather />
           </div>
           <div className='homeComponent'>
-            <News />
+            Emplacement disponible
           </div>
         </div>
         <div id='parallaxe3'>&nbsp;</div>
-        <Newsletter />
+        <Newsletter noti={this.props.notification} />
       </div>
     )
   }
 }
 
 export default Home
-  // <div className='home'>
-  //   <div className='homeComponent'>
-  //     <Weather />
-  //   </div>
-  //   <div className='homeComponent'>
-  //     <News />
-  //   </div>
-  //   <div id='parallaxe1'>Wakeboard Crêche-Sur-Saône</div>
-
-  //   <div className='new'>
-  //     <Newsletter notification={this.props.notification} />
-  //   </div>
-  // </div>

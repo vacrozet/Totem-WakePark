@@ -20,3 +20,8 @@
   display: flex;
   flex-direction: row;
 }
+
+.bodyNewsletter {
+  height: auto;
+  margin-top: 53px;
+}

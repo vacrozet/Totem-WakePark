@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs'
 import { Button } from 'react-bootstrap'
 import { local } from '../../utils/api.js'
 import moment from 'moment'
+import '../../css/newsletter.css'
 
 class NewsLetter extends Component {
   constructor (props) {
@@ -38,7 +39,7 @@ class NewsLetter extends Component {
 
   render () {
     return (
-      <div>
+      <div className='bodyNewsletter'>
         <center>
           <table>
             <tbody>

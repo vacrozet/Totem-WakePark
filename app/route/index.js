@@ -7,5 +7,6 @@ router.use('/tarifs', require('./tarifs.js'))
 router.use('/contact', require('./contact.js'))
 router.use('/user', require('./user.js'))
 router.use('/newsletter', require('./newsletter.js'))
+router.use('/webhook', require('./webhook'))
 
 module.exports = router

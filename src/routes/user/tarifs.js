@@ -21,7 +21,7 @@ class Tarifs extends Component {
 
   render () {
     return (
-      <div>
+      <div className='bodyTarifs'>
         <Accordion defaultActiveKey={this.state.activeKey}>
           <Panel bsStyle='primary' header='Forfaits Libres' eventKey='1'>
             <center>

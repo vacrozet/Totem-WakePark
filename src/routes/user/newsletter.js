@@ -23,22 +23,26 @@ class Newsletter extends Component {
           mail: this.state.mail
         }).then((res) => {
           if (res.data.success === true) {
-            this.props.notification.addNotification({
+            console.log(res.data)
+            this.props.noti.addNotification({
               level: 'success',
               message: res.data.message
             })
+            this.setState({mail: ''})
           } else {
-            this.props.notification.addNotification({
+            this.props.noti.addNotification({
               level: 'error',
               message: 'vous êtes déjà abonné'
             })
+            this.setState({mail: ''})
           }
         })
       } else {
-        this.props.notification.addNotification({
+        this.props.noti.addNotification({
           level: 'error',
           message: 'champs mail renseigné'
         })
+        this.setState({mail: ''})
       }
     }
   }

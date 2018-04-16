@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import CCarousel from '../../components/carousel.js'
 import { local } from '../../utils/api'
-import '../../css/upload.css'
+import '../../css/galerie.css'
 
 class Galerie extends Component {
   constructor (props) {
@@ -41,7 +41,7 @@ class Galerie extends Component {
 
   render () {
     return (
-      <div>
+      <div className='bodyGalerie'>
         {this.state.result ? this.state.result.map((res, index) => {
           return (<CCarousel key={index} name={res._id} arrayPic={res.pictures} />)
         }) : (
